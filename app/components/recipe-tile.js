@@ -20,7 +20,16 @@ export default Ember.Component.extend({
     return this.get('drink').tastes;
   }),
   drinkVideo: Ember.computed( function( ) {
-    return this.get('drink').videos[1].video;
+    if(this.get('drink').videos !== undefined) {
+      var vidLinks = this.get('drink').videos;
+      var youtubeLink = "";
+      for( var i = 0; i < vidLinks.length; i++ ) {
+        if( vidLinks[ i ].type == "youtube" ) {
+          youtubeLink = vidLinks[ i ].video;
+        }
+      }
+    }
+    return youtubeLink;
   }),
   drinkTools: Ember.computed( function( ) {
     return this.get('drink').tools;
