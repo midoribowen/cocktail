@@ -1,0 +1,42 @@
+{{yield}}
+
+{{yield}}
+<div class="row">
+  <p>({{drinkAlcoholic}})</p>
+  <span><h1>{{drinkName}}</h1>
+  {{#each drinkTastes as |t|}}
+    <span>{{t.text}}!</span>
+  {{/each}}</span>
+  <p>{{drinkCategory}}</p>
+  <p>Perfect for the
+  {{#each drinkOccasions as |oc|}}
+  {{capitalizeHelper oc.id}}!
+  {{/each}}
+  </p>
+  <div class="container">
+    <h3>Instructions</h3>
+    <ul>
+    <li><b>Served in - {{drinkServedIn}}</b></li>
+    {{#each drinkInstructions as |i|}}
+      <li>{{i}}</li>
+    {{/each}}
+  </ul>
+    <h3>Tools</h3>
+    <ul>
+      {{#each drinkTools as |t|}}
+      <li>{{t.text}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<h3>Ingredients</h3>
+<div class="row">
+  <div class="container">
+    {{#each drinkIngredients as |i|}}
+      <p>{{i.textPlain}}</p>
+    {{/each}}
+    <iframe width="420" height="315" src="https://www.youtube.com/embed/{{drinkVideo}}">
+    </iframe>
+  </div>
+</div>
