@@ -1,9 +1,8 @@
 # Cocktail
 
-API info: http://forum.kodi.tv/showthread.php?tid=235298
+API doc for Drink object:
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+http://addb.absolutdrinks.com/docs/drinks
 
 ## Prerequisites
 
