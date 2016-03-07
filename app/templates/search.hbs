@@ -1,6 +1,4 @@
 {{log model}}
 {{#each model as |drink|}}
-  <img src="http://assets.absolutdrinks.com/drinks/300x400/{{drink.id}}.png" alt="" />
-  <h2>{{drink.name}}</h2>
-  <p>{{drink.story}}</p>
+  {{recipe-tile drink=drink}}
 {{/each}}
