@@ -1,0 +1,23 @@
+{{yield}}
+
+{{yield}}
+<div class="row">
+  <h1>{{drinkName}}</h1>
+  <p>{{drinkCategory}} ({{drinkAlcoholic}})</p>
+  <div class="container">
+    <h3>Instructions</h3>
+    <p>{{drinkInstructions}}</p>
+  </div>
+</div>
+
+<h3>Ingredients</h3>
+<div class="row">
+  {{#each drinkIngredients as |i|}}
+    <p>{{i}}</p>
+  {{/each}}
+</div>
+<div class="row">
+  {{#each drinkMeasures as |m|}}
+    <p>{{m}}</p>
+  {{/each}}
+</div>
