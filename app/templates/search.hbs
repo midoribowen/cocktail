@@ -3,4 +3,11 @@
   <img src="http://assets.absolutdrinks.com/drinks/300x400/{{drink.id}}.png" alt="" />
   <h2>{{drink.name}}</h2>
   <p>{{drink.story}}</p>
+  <p>{{drink.descriptionPlain}}</p>
+  <ul>
+    {{#each drink.ingredients as |ingredient|}}
+      <li>{{ingredient.textPlain}}</li>
+    {{/each}}
+  </ul>
+
 {{/each}}
