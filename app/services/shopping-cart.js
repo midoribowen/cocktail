@@ -65,5 +65,6 @@ export default Ember.Service.extend({
       self.get('allIngredients').pushObject(pair);
       self.notifyPropertyChange('allIngredients');
     });
+    console.log(self.get('allIngredients'));
   }
 });
