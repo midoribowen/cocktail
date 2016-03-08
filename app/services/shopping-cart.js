@@ -59,9 +59,11 @@ export default Ember.Service.extend({
       var pair = {
         drink_name: drink.name,
         ingredient_id: ingredient.id,
-        amount: runningTotal
+        amount: runningTotal,
+        newString: newString,
       }
       self.get('allIngredients').pushObject(pair);
+      self.notifyPropertyChange('allIngredients');
     });
   }
 });

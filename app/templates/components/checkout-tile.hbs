@@ -1,9 +1,8 @@
-{{#if shoppingCart.allIngredients}}
 
-  <p>
-    checkout tile!!!!!11!
-  </p>
-
-  {{shoppingCart.allIngredientsLength}}
-
+{{#if getIngredients}}
+  <ul>
+    {{#each getIngredients as |ingredient|}}
+      <li>{{ingredient.amount}} {{ingredient.of}}</li>
+    {{/each}}
+  </ul>
 {{/if}}
