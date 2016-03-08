@@ -2,7 +2,7 @@
 
 regex:
 
-/(Part[^\s\\]|Part)/g
+(Part[^\s\\]|Part)
 
 API doc for Drink object:
 
