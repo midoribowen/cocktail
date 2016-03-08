@@ -1,5 +1,12 @@
-{{yield}}
 
-{{#each inShoppingCart as |li|}}
-  <p>{{li.drink_name}}</p>
-{{/each}}
+<p>
+  {{test}}
+</p>
+
+{{#if getIngredients}}
+<ul>
+  {{#each getIngredients as |li|}}
+    <li>{{li.amount}} {{li.of}}</li>
+  {{/each}}
+</ul>
+{{/if}}
