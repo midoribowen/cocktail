@@ -11,7 +11,6 @@ export default Ember.Component.extend({
     Parts: 45,
     Part: 45,
   },
-
   getIngredients: Ember.computed( 'shoppingCart.allIngredients', function( ) {
     var ingredients = this.get('shoppingCart').get('allIngredients');
     var result = [];
@@ -75,7 +74,7 @@ export default Ember.Component.extend({
       }
     }
     return result;
-  })
+  }),
 });
 // Constants for size of bottles in ml
 // constants for size of fruit containers, in whole numbers

@@ -1,5 +1,9 @@
 # Cocktail
 
+regex:
+
+(Part[^\s\\]|Part)
+
 API doc for Drink object:
 
 http://addb.absolutdrinks.com/docs/drinks

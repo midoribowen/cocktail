@@ -3,8 +3,14 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   shoppingCart: Ember.inject.service(),
 
+  opened: false,
+  killButton: false,
+
   drinkName: Ember.computed( function( ) {
     return this.get('drink').name;
+  }),
+  drinkId: Ember.computed( function( ) {
+    return this.get('drink').id;
   }),
   drinkCategory: Ember.computed( function( ) {
     return this.get('drink').story;
@@ -51,7 +57,16 @@ export default Ember.Component.extend({
           name: this.get('drinkName'),
           ingredients: this.get('drinkIngredients')
         };
+        this.set('killButton', true);
         this.get('shoppingCart').addToCart(drink);
-      }
+      },
+
+      open() {
+        this.set('opened', true);
+      },
+
+      close() {
+        this.set('opened', false);
+      },
     }
 });

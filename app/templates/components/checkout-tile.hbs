@@ -1,12 +1,8 @@
 
-<p>
-  {{test}}
-</p>
-
 {{#if getIngredients}}
-<ul>
-  {{#each getIngredients as |li|}}
-    <li>{{li.amount}} {{li.of}}</li>
-  {{/each}}
-</ul>
+  <ul>
+    {{#each getIngredients as |ingredient|}}
+      <li>{{ingredient.amount}} {{ingredient.of}}</li>
+    {{/each}}
+  </ul>
 {{/if}}

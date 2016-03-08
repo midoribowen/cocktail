@@ -1,5 +1,9 @@
 {{checkout-tile}}
 
+{{#unless model.length}}
+  <h2>No drinks found, try searching again!</h2>
+{{/unless}}
+
 {{#each model as |drink|}}
   {{recipe-tile drink=drink addToCart='addToCart'}}
 {{/each}}
