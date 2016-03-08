@@ -9,28 +9,57 @@ export default Ember.Service.extend({
     var ingredients = drink.ingredients;
     var self = this;
     ingredients.forEach(function(ingredient) {
-      var id = ingredient.id;
-      var runningTotal = 0;
-      var firstChar = ingredient.textPlain.slice(0,1);
-      var secondChar = ingredient.textPlain.slice(1,2);
-      if ((firstChar === '¼') || (secondChar === '¼')) {
-        runningTotal += 0.25;
+
+      var quantityWithFraction = ingredient.textPlain.match(/^([0-9¼½½⅓⅔])+/i);
+      var quantityWithoutFraction = ingredient.textPlain.match(/^([0-9])+/i);
+      var fractionsOnly = ingredient.textPlain.match(/([¼½½⅓⅔])+/i);
+
+      if (quantityWithFraction) {
+        var newString = ingredient.textPlain.substring(quantityWithFraction.length);
+      } else {
+        var newString = ingredient.textPlain;
       }
-      if ((firstChar === '½') || (secondChar === '½')) {
-        runningTotal += 0.5;
+
+      var runningTotal = (parseFloat(quantityWithoutFraction) > 0) ? parseFloat(quantityWithoutFraction) : 0;
+
+      if (fractionsOnly) {
+        switch (fractionsOnly[0]) {
+          case '¼':
+            runningTotal += 0.25;
+            break;
+          case '½':
+            runningTotal += 0.5;
+            break;
+          case '¾':
+            runningTotal += 0.75;
+            break;
+          case '⅓':
+            runningTotal += 0.33;
+            break;
+          case '⅔':
+            runningTotal += 0.66;
+            break;
+          default:
+            break;
+        }
       }
-      if ((firstChar === '¾') || (secondChar === '¾')) {
-        runningTotal += 0.75;
+
+      if (newString.match(/twist/i)) {
+        runningTotal = 0.10;
+      } else if (newString.match(/wedge/i)) {
+        runningTotal = 0.125;
+      } else if (newString.match(/half/i)) {
+        runningTotal = 0.5;
       }
-      if (!isNaN(firstChar)) {
-        runningTotal += parseInt(ingredient.textPlain.slice(0,1));
-      }
+
       var pair = {
         drink_name: drink.name,
-        ingredient: ingredient.id,
+        ingredient_id: ingredient.id,
         amount: runningTotal
       }
       self.get('allIngredients').pushObject(pair);
     });
+    console.log('in shopping Cart');
+    console.log(this.get('allIngredients').length);
   }
 });
