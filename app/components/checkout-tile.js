@@ -75,6 +75,12 @@ export default Ember.Component.extend({
     }
     return result;
   }),
+
+  actions: {
+    removeFromCart(drink) {
+      this.get('shoppingCart').removeFromCart(drink);
+    },
+  }
 });
 // Constants for size of bottles in ml
 // constants for size of fruit containers, in whole numbers

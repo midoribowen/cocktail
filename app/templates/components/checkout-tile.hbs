@@ -1,5 +1,10 @@
-
 {{#if getIngredients}}
+  <ul>
+    {{#each shoppingCart.recipes as |recipe|}}
+      <li>| {{recipe.name}} [<span {{action 'removeFromCart' recipe}}>X</span>] | </li>
+    {{/each}}
+  </ul>
+
   <ul>
     {{#each getIngredients as |ingredient|}}
       <li>{{ingredient.amount}} {{ingredient.of}}</li>
