@@ -9,6 +9,9 @@ export default Ember.Component.extend({
   drinkName: Ember.computed( function( ) {
     return this.get('drink').name;
   }),
+  drinkId: Ember.computed( function( ) {
+    return this.get('drink').id;
+  }),
   drinkCategory: Ember.computed( function( ) {
     return this.get('drink').story;
   }),
