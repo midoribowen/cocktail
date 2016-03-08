@@ -4,7 +4,9 @@ export default Ember.Component.extend({
   shoppingCart: Ember.inject.service(),
 
   opened: false,
-  killButton: false,
+  killButton: Ember.computed('shoppingCart.recipes', function() {
+    return this.get('shoppingCart').containsDrink(this.get('drink'));
+  }),
 
   drinkName: Ember.computed( function( ) {
     return this.get('drink').name;
@@ -57,7 +59,6 @@ export default Ember.Component.extend({
           name: this.get('drinkName'),
           ingredients: this.get('drinkIngredients')
         };
-        //this.set('killButton', true);
         this.get('shoppingCart').addToCart(drink);
       },
 
