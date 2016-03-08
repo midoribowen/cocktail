@@ -14,9 +14,9 @@ export default Ember.Service.extend({
     var self = this;
     ingredients.forEach(function(ingredient) {
 
-      var quantityWithFraction = ingredient.textPlain.match(/^([0-9¼½½⅓⅔])+/i);
+      var quantityWithFraction = ingredient.textPlain.match(/^([0-9¼½½⅓⅔¾])+/i);
       var quantityWithoutFraction = ingredient.textPlain.match(/^([0-9])+/i);
-      var fractionsOnly = ingredient.textPlain.match(/([¼½½⅓⅔])+/i);
+      var fractionsOnly = ingredient.textPlain.match(/([¼½½⅓⅔¾])+/i);
 
       if (quantityWithFraction) {
         var newString = ingredient.textPlain.substring(quantityWithFraction.length);
@@ -64,6 +64,34 @@ export default Ember.Service.extend({
       }
       self.get('allIngredients').pushObject(pair);
       self.notifyPropertyChange('allIngredients');
+      self.notifyPropertyChange('recipes');
+
     });
-  }
+  },
+
+  removeFromCart(drink) {
+    var drinkName = drink.name;
+    var toRemove = [];
+
+    this.get('recipes').removeObject(drink);
+    this.get('allIngredients').forEach(function(ingredient) {
+      if (ingredient.drink_name === drinkName) {
+        toRemove.pushObject(ingredient);
+      }
+    });
+    this.get('allIngredients').removeObjects(toRemove);
+    this.notifyPropertyChange('allIngredients');
+    this.notifyPropertyChange('recipes');
+ },
+
+ containsDrink(drink) {
+   var result = false;
+   this.get('recipes').forEach(function(recipe) {
+     if (recipe.name === drink.name) {
+       result = true;
+     }
+   });
+   return result;
+ }
+
 });
