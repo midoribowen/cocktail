@@ -3,10 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   shoppingCart: Ember.inject.service(),
 
-  stuffInCart: Ember.computed('shoppingCart.allIngredients', function() {
-    return this.get("shoppingCart.allIngredients").length > 0;
-  }),
-
   actions: {
     getTotalsFromList( ) {
       var totals = {};

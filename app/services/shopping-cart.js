@@ -4,6 +4,10 @@ export default Ember.Service.extend({
   recipes: [],
   allIngredients: [],
 
+  allIngredientsLength: Ember.computed(function() {
+    return this.get('allIngredients').length;
+  }),
+
   addToCart(drink) {
     this.get('recipes').pushObject(drink);
     var ingredients = drink.ingredients;
@@ -44,13 +48,13 @@ export default Ember.Service.extend({
         }
       }
 
-      if (newString.match(/twist/i)) {
-        runningTotal = 0.10;
-      } else if (newString.match(/wedge/i)) {
-        runningTotal = 0.125;
-      } else if (newString.match(/half/i)) {
-        runningTotal = 0.5;
-      }
+      // if (newString.match(/twist/i)) {
+      //   runningTotal = 0.10;
+      // } else if (newString.match(/wedge/i)) {
+      //   runningTotal = 0.125;
+      // } else if (newString.match(/half/i)) {
+      //   runningTotal = 0.5;
+      // }
 
       var pair = {
         drink_name: drink.name,
@@ -59,7 +63,5 @@ export default Ember.Service.extend({
       }
       self.get('allIngredients').pushObject(pair);
     });
-    console.log('in shopping Cart');
-    console.log(this.get('allIngredients').length);
   }
 });
