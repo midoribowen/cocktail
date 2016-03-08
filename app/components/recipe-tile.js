@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  shoppingCart: Ember.inject.service(),
 
   drinkName: Ember.computed( function( ) {
     return this.get('drink').name;
@@ -42,17 +43,15 @@ export default Ember.Component.extend({
   }),
   drinkIngredients: Ember.computed( function( ) {
     return this.get('drink').ingredients;
-    /*
-    var response = this.get('sampleResponse');
-    var ingredients = [];
-    for( var i = 1; i <= 15; i++ ) {
-        var ingVarName = "strIngredient" + i.toString( );
-        var ingResponseValue = response[ ingVarName ];
-        if(ingResponseValue != "" && ingResponseValue != " ") {
-          ingredients.push( ingResponseValue );
-        }
-    }
-    return ingredients;
-    */
   }),
+
+    actions: {
+      addToCart() {
+        var drink = {
+          name: this.get('drinkName'),
+          ingredients: this.get('drinkIngredients')
+        };
+        this.get('shoppingCart').addToCart(drink);
+      }
+    }
 });
