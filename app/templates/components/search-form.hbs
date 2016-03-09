@@ -1,5 +1,5 @@
-<form>
+<form {{action 'search' on='submit'}}>
   <label for="search">Enter a drink name</label>
     {{input placeholder="Search Drinks" value=drinksearch id='search'}}
-  <button  {{action 'search'}}>Search</button>
+  <button type='submit'>Search</button>
 </form>
