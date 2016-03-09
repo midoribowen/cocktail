@@ -12,14 +12,19 @@
   {{#x-option value='cold'}}Cold{{/x-option}}
 {{/x-select}}
 
-{{log model}}
-
-
+<label for="carbonatedOrNot"> Carbonated or Not </label>
+{{#x-select action='carbonatedOrNot' default='both' id='carbonatedOrNot'}}
+  {{#x-option value='both'}}Both{{/x-option}}
+  {{#x-option value='noncarbonated'}}Noncarbonated{{/x-option}}
+  {{#x-option value='carbonated'}}Carbonated{{/x-option}}
+{{/x-select}}
 
 {{#each model as |drink|}}
   {{#if (or (eq (not drink.isAlcoholic) showNotAlcoholic) (eq drink.isAlcoholic showAlcoholic))}}
     {{#if (or (eq (not drink.isHot) showCold) (eq drink.isHot showHot))}}
-      {{recipe-tile drink=drink addToCart='addToCart'}}
+      {{#if (or (eq (not drink.isCarbonated) showNotCarbonated) (eq drink.isCarbonated showCarbonated))}}
+        {{recipe-tile drink=drink addToCart='addToCart'}}
+      {{/if}}
     {{/if}}
   {{/if}}
 {{/each}}
