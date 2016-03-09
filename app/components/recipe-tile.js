@@ -33,7 +33,7 @@ export default Ember.Component.extend({
       var vidLinks = this.get('drink').videos;
       var youtubeLink = "";
       for( var i = 0; i < vidLinks.length; i++ ) {
-        if( vidLinks[ i ].type == "youtube" ) {
+        if( vidLinks[ i ].type === "youtube" ) {
           youtubeLink = vidLinks[ i ].video;
         }
       }
