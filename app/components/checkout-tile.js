@@ -15,6 +15,8 @@ export default Ember.Component.extend({
     Part: 45,
     Slice: 0.125,
     Piece: 0.125,
+    Splash: 0.125,
+    Whole: 0.0335, // To "pint"
   },
   getIngredients: Ember.computed( 'shoppingCart.allIngredients', function( ) {
     var ingredients = this.get('shoppingCart').get('allIngredients');
@@ -63,31 +65,47 @@ export default Ember.Component.extend({
               case "Twist":
               case "Peel":
               var wedgeConversion = result[r]["amount"];
+              var starting = wedgeConversion;
               wedgeConversion *= this.get("KEYWORDS")[p.toString( )];
               result[r]["amount"] = Math.ceil( wedgeConversion ).toString( );;
-              result[r]["of"] = result[r]["of"].replace(/(Wedge|Wheel|Slice|Piece)/g, "");
+              result[r]["of"] = result[r]["of"].replace(/(Wedge|Wheel|Slice|Piece|Twist|Peel)/g, "");
               result[r]["of"] = result[r]["of"].replace(/Lime/g, "Lime(s)");
               result[r]["of"] = result[r]["of"].replace(/Lemon/g, "Lemon(s)")
               if(result[r]["of"].includes("Twist")) {
                 result[r]["of"] += " (Twist)";
               }
+              result[r]["of"] += "(" + starting + " " + p.toString( ) + " total)";
+              break;
+              case "Whole":
+                var wholeConversion = result[r]["amount"];
+                result[r]["of"] += " (" + wholeConversion + " total) ";
+                wholeConversion *= this.get("KEYWORDS")[p.toString( )];
+                result[r]["amount"] = Math.ceil( wholeConversion ).toString( );
+                result[r]["of"] = result[r]["of"].replace(/Whole/g, "Pint(s)");
               break;
               case "Part":
               case "Parts":
+              case "Splash":
               var mlAmount = result[r]["amount"] * this.get("KEYWORDS")[p.toString( )];
               result[r]["amount"] /= mlAmount;
               if(mlAmount < 750) {
                 result[r]["amount"] = Math.ceil( parseFloat( mlAmount / 750 ) );
-                if(result[r]["of"].includes("Juice") || result[r]["of"].includes("Liqueur") || result[r]["of"].includes("Nectar") || result[r]["of"].includes("Puree") ) {
-                  result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "bottle(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(2).toString( ) + "oz)";
+                if( result[r]["of"].includes("Simple Syrup") ||
+                           result[r]["of"].includes("Water") ||
+                           result[r]["of"].includes("Juice") ||
+                           result[r]["of"].includes("Sherry") ||
+                           result[r]["of"].includes("Nectar") ||
+                           result[r]["of"].includes("Puree") ) {
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash)/g, "Bottle(s)");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 } else {
-                  result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "fifth(s)");
+                  result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Fifth(s)");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
               }
               else {
                 result[r]["amount"] = Math.ceil( parseFloat( mlAmount / 1500 ) );
-                result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "handle(s)");
+                result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Handle(s)");
               }
               break;
             }
