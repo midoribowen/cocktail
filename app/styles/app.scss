@@ -1,3 +1,176 @@
+//override bootstrap variables here
+
+@import 'bootstrap';
+
+// VARIABLES+++++++++++++++++++++++
+
+$teal: rgb(0, 224, 201);
+$lightTeal: rgb(146, 252, 240);
+$purple: rgb(199, 73, 120);
+$orange: rgb(242, 149, 38);
+$lightOrange: rgb(255, 199, 140);
+$blue: rgb(11, 30, 221);
+$blackish: rgb(7, 3, 4);
+$lightGrey: rgb(242, 242, 242);
+
+// BORDER BOX+++++++++++++++++++++++
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+// GLOBAL STYLES ==============
+
 body {
-  background-color: white;
+  background-color: $blackish;
+}
+.wrapper {
+  margin: 20px;
+}
+
+// SEARCH COCKTAIL GLASS ICON ANIMATION ==============
+
+#searchButton {
+  animation: rainbow2 5s 1s ease-in-out infinite;
+}
+
+@keyframes rainbow2 {
+  0% {
+    border: 2px solid $orange;
+  }
+  12% {
+    border: 2px solid $orange;
+  }
+  37% {
+    border: 2px solid $purple;
+  }
+  62% {
+    border: 2px solid $teal;
+  }
+  87% {
+    border: 2px solid $blue;
+  }
+  100% {
+    border: 2px solid $orange;
+  }
+}
+
+#searchButton i {
+  animation: rainbow 5s 1s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    color: $orange;
+  }
+  12% {
+    color: $orange;
+  }
+  37% {
+    color: $purple;
+  }
+  62% {
+    color: $teal;
+  }
+  87% {
+    color: $blue;
+  }
+  100% {
+    color: $orange;
+  }
+}
+
+// HERO LANDING AREA ++++++++++++++++++++++++++++++
+.hero {
+  background-image: url("images/cocktailImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+  width: 100%;
+  .navBar {
+    display: flex;
+    justify-content: center;
+    .links {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $teal;
+      font-size: 30px;
+      margin: 10px;
+      .cartDiv {
+        color: white;
+        display: flex;
+        align-items: center;
+        // width: 200px;
+        .itemsInCart {
+          padding-left: 5px;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    letter-spacing: 2px;
+    // margin: 0;
+    margin-top: 125px;
+    h1 {
+      margin: 10px;
+      color: rgba(255, 255, 255, 1);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      letter-spacing: 5px;
+      font-size: 90px;
+    }
+  }
+  .searchDiv {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0px;
+    #searchButton {
+      margin-top: 25px;
+      width: 50px;
+      height: 50px;
+      border: 2px solid $orange;
+      color: $orange;
+      background-color: rgba(0,0,0,0);
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+
+// RECIPE TILE.HBS STYLES+++++++++++++++++++++++++++
+
+.drinkTitle {
+  color: $lightTeal;
+  font-size: 25px;
+  text-align: center;
+}
+.drinkTitleSelected {
+  color: $lightOrange;
+  font-size: 25px;
+}
+
+.alcoholOrNot {
+  color: $lightGrey;
+}
+
+.youtube {
+  max-width: 100%;
 }

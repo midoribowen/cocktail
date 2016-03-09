@@ -1,5 +1,5 @@
 <form>
-  <label for="search">Enter a drink name</label>
-  {{input value=search id='search'}}
-  <button  {{action 'search'}}>Search</button>
+  <label for="search"></label>
+  {{input value=search id='search' class="form-control"}}
+  <button id="searchButton" {{action 'search'}}><i class="fa fa-glass"></i></button>
 </form>
