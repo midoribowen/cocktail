@@ -62,7 +62,6 @@ export default Ember.Component.extend({
           name: this.get('drinkName'),
           ingredients: this.get('drinkIngredients')
         };
-        // this.set('killButton', true);
         this.get('shoppingCart').addToCart(drink);
       },
 
