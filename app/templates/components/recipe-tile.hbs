@@ -2,6 +2,19 @@
   <div class="row">
     <div class="drink-title-header">
       <h1 {{action 'close'}}>{{drinkName}}</h1>
+
+      {{#each drink.tags as |tag|}}
+        {{#if (eq tag.name 'Top 25')}}
+          <span class='drink_tag'>TOP 25</span>
+        {{/if}}
+        {{#if (eq tag.name 'cat_60s_era_cocktails')}}
+          <span class='drink_tag'>MAD MEN SPECIAL</span>
+        {{/if}}
+        {{#if (eq tag.name 'occ_partynight')}}
+          <span class='drink_tag'>PARTY NIGHT</span>
+        {{/if}}
+      {{/each}}
+
       <p>({{drinkAlcoholic}})</p>
         <img src="http://assets.absolutdrinks.com/drinks/transparent-background-white/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
 
@@ -52,6 +65,7 @@
     {{else}}
       <button {{action 'addToCart'}}>Put it on my tab!</button>
   {{/if}}
+
 {{else}}
   <h1 {{action 'open'}}>{{drinkName}}</h1>
 
