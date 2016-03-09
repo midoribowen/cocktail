@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   showNotAlcoholic: true,
   showHot: true,
   showCold: true,
+  showCarbonated: true,
+  showNotCarbonated: true,
 
   actions: {
     alcoholicOrNot(selection) {
@@ -30,6 +32,19 @@ export default Ember.Component.extend({
       } else {
         this.set('showHot', true);
         this.set('showCold', true);
+      }
+    },
+
+    carbonatedOrNot(selection) {
+      if (selection === 'carbonated') {
+        this.set('showCarbonated', true);
+        this.set('showNotCarbonated', false);
+      } else if (selection === 'noncarbonated') {
+        this.set('showCarbonated', false);
+        this.set('showNotCarbonated', true);
+      } else {
+        this.set('showCarbonated', true);
+        this.set('showNotCarbonated', true);
       }
     }
   }
