@@ -1,3 +1,16 @@
+
+<div class="row">
+  <div class="container">
+    {{#if outOfRange}}
+    <div class="container">
+      <span>Input out of range! Use 1 to 1000.</span>
+    </div>
+    {{/if}}
+    <span>Guests</span>
+    {{input type="number" value=updateGuests id="updateGuests" placeholder="1 - 1000" on="key-up" action="updateGuests"}}
+  </div>
+</div>
+
 {{#if getIngredients}}
   <ul>
     {{#each shoppingCart.recipes as |recipe|}}

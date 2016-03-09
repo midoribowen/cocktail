@@ -57,7 +57,6 @@ export default Ember.Service.extend({
       self.get('allIngredients').pushObject(pair);
       self.notifyPropertyChange('allIngredients');
       self.notifyPropertyChange('recipes');
-
     });
   },
 
@@ -84,5 +83,11 @@ export default Ember.Service.extend({
      }
    });
    return result;
+ },
+
+ multiplyForGuests( ) {
+   // Work around to always referesh the computed property when user
+   // clicks the update button.
+   this.notifyPropertyChange('allIngredients');
  }
 });
