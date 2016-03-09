@@ -1,0 +1,8 @@
+<label for="userWantsNonAlcoholic">Non-Alcoholic Beverages</label>
+{{input type='checkbox' name='userWantsNonAlcoholic' checked=userWantsNonAlcoholic}}
+<label for="userWantsHot">Hot Beverages</label>
+{{input type='checkbox' name='userWantsHot' checked=userWantsHot}}
+
+{{#each model as |drink|}}
+  {{recipe-tile drink=drink addToCart='addToCart'}}
+{{/each}}
