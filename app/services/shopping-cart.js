@@ -48,14 +48,6 @@ export default Ember.Service.extend({
         }
       }
 
-      // if (newString.match(/twist/i)) {
-      //   runningTotal = 0.10;
-      // } else if (newString.match(/wedge/i)) {
-      //   runningTotal = 0.125;
-      // } else if (newString.match(/half/i)) {
-      //   runningTotal = 0.5;
-      // }
-
       var pair = {
         drink_name: drink.name,
         ingredient_id: ingredient.id,
@@ -93,5 +85,4 @@ export default Ember.Service.extend({
    });
    return result;
  }
-
 });
