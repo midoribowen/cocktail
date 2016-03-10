@@ -124,7 +124,7 @@ export default Ember.Component.extend({
                   result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Fifth(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
-              }
+              } 
               else {
                 result[r]["amount"] = Math.ceil( parseFloat( mlAmount / 1500 ) );
                 if( result[r]["of"].includes("Simple Syrup") ||
