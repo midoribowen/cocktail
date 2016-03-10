@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   shoppingCart: Ember.inject.service('shopping-cart'),
   guests: 0,
   outOfRange: false,
+
   KEYWORDS: {
     Quarter: 0.25,
     Quarters: 0.25,
@@ -23,6 +24,7 @@ export default Ember.Component.extend({
     Dashes: 0.9,
     Mint: 1,
   },
+
   getIngredients: Ember.computed( 'shoppingCart.allIngredients', function( ) {
     var ingredients = this.get('shoppingCart').get('allIngredients');
     var result = [];
@@ -83,7 +85,7 @@ export default Ember.Component.extend({
               if(result[r]["of"].includes("Twist")) {
                 result[r]["of"] += " (Twist)";
               }
-              result[r]["of"] += "(" + starting + " " + p.toString( ) + " total)";
+              result[r]["of"] += " (" + starting + " " + p.toString( ) + " total)";
               break;
               case "Whole":
                 var wholeConversion = result[r]["amount"];
@@ -112,20 +114,20 @@ export default Ember.Component.extend({
                            result[r]["of"].includes("Bitters") ||
                            result[r]["of"].includes("Puree") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash|Dashes|Dash)/g, "Bottle(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                   if( result[r]["of"].includes("Bitters") || result[r]["of"].includes("Bitter")) {
-                    result[r]["of"] += "(Dash(es))";
+                    result[r]["of"] += " (Dash(es))";
                   }
                 } else if( result[r]["of"].includes("Milk") || result[r]["of"].includes("Cream") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "Gallon(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 } else if( result[r]["of"].includes("Coffee") ) {
                   result[r]["amount"] = "";
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 } else {
                   result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Fifth(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
               }
               else {
@@ -139,20 +141,20 @@ export default Ember.Component.extend({
                            result[r]["of"].includes("Nectar") ||
                            result[r]["of"].includes("Puree") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash|Dashes|Dash)/g, "Bottle(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                   if( result[r]["of"].includes("Bitters") || result[r]["of"].includes("Bitter")) {
                     result[r]["of"] += "(Dash(es))";
                   }
                 } else if( result[r]["of"].includes("Milk") || result[r]["of"].includes("Cream") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "Gallon(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 } else if( result[r]["of"].includes("Coffee") ) {
                   result[r]["amount"] = "";
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 } else {
                   result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Handle(s)");
-                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  result[r]["of"] += " (" + mlAmount.toFixed(1) + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
               }
               break;
@@ -176,7 +178,7 @@ export default Ember.Component.extend({
       this.get('shoppingCart').removeFromCart(drink);
     },
     updateGuests( ) {
-      if( this.get("updateGuests") > 1000 || this.get("updateGuests") < 1) {
+      if( this.get("updateGuests") > 1000 || this.get("updateGuests") < 1 || isNaN(this.get('updateGuests'))) {
         this.set("outOfRange", true);
       } else {
         this.set( "guests", this.get("updateGuests") );

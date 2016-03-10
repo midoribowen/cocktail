@@ -29,7 +29,6 @@
 
   <br>
 
-  {{log sortedDrinks}}
 
   {{#each sortedDrinks as |drink|}}
   {{#if (or (eq (not drink.isAlcoholic) showNotAlcoholic) (eq drink.isAlcoholic showAlcoholic))}}
