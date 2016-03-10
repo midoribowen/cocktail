@@ -18,7 +18,9 @@ export default Ember.Component.extend({
     Slice: 0.125,
     Piece: 0.125,
     Splash: 3.7,
-    Whole: 0.0335, // To "pint"
+    Whole: 0.0335,
+    Dash: 0.9,
+    Dashes: 0.9,
   },
   getIngredients: Ember.computed( 'shoppingCart.allIngredients', function( ) {
     var ingredients = this.get('shoppingCart').get('allIngredients');
@@ -92,6 +94,8 @@ export default Ember.Component.extend({
               case "Part":
               case "Parts":
               case "Splash":
+              case "Dash":
+              case "Dashes":
               var mlAmount = result[r]["amount"] * this.get("KEYWORDS")[p.toString( )];
               result[r]["amount"] /= mlAmount;
               if(mlAmount < 750) {
@@ -101,9 +105,14 @@ export default Ember.Component.extend({
                            result[r]["of"].includes("Juice") ||
                            result[r]["of"].includes("Sherry") ||
                            result[r]["of"].includes("Nectar") ||
+                           result[r]["of"].includes("Bitter") ||
+                           result[r]["of"].includes("Bitters") ||
                            result[r]["of"].includes("Puree") ) {
-                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash)/g, "Bottle(s)");
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash|Dashes|Dash)/g, "Bottle(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  if( result[r]["of"].includes("Bitters") || result[r]["of"].includes("Bitter")) {
+                    result[r]["of"] += "(Dash(es))";
+                  }
                 } else if( result[r]["of"].includes("Milk") || result[r]["of"].includes("Cream") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "Gallon(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
@@ -115,17 +124,22 @@ export default Ember.Component.extend({
                   result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Fifth(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
-              }
+              } 
               else {
                 result[r]["amount"] = Math.ceil( parseFloat( mlAmount / 1500 ) );
                 if( result[r]["of"].includes("Simple Syrup") ||
                            result[r]["of"].includes("Water") ||
                            result[r]["of"].includes("Juice") ||
                            result[r]["of"].includes("Sherry") ||
+                           result[r]["of"].includes("Bitter") ||
+                           result[r]["of"].includes("Bitters") ||
                            result[r]["of"].includes("Nectar") ||
                            result[r]["of"].includes("Puree") ) {
-                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash)/g, "Bottle(s)");
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash|Dashes|Dash)/g, "Bottle(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                  if( result[r]["of"].includes("Bitters") || result[r]["of"].includes("Bitter")) {
+                    result[r]["of"] += "(Dash(es))";
+                  }
                 } else if( result[r]["of"].includes("Milk") || result[r]["of"].includes("Cream") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "Gallon(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
