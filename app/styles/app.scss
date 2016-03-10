@@ -157,18 +157,78 @@ body {
 
 // RECIPE TILE.HBS STYLES+++++++++++++++++++++++++++
 
+.putOnTabButton-Enabled {
+  animation: rainbow2 5s ease-in-out infinite;
+}
+
+@keyframes rainbow2 {
+  0% {
+    border: 1px solid $orange;
+  }
+  12% {
+    border: 1px solid $orange;
+  }
+  37% {
+    border: 1px solid $purple;
+  }
+  62% {
+    border: 1px solid $teal;
+  }
+  87% {
+    border: 1px solid $blue;
+  }
+  100% {
+    border: 1px solid $orange;
+  }
+}
+
+.putOnTabButton-Enabled i {
+  animation: rainbow 5s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    color: $orange;
+  }
+  12% {
+    color: $orange;
+  }
+  37% {
+    color: $purple;
+  }
+  62% {
+    color: $teal;
+  }
+  87% {
+    color: $blue;
+  }
+  100% {
+    color: $orange;
+  }
+}
+
+
 .recipeTileDiv {
   color: $lightGrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.addDrinkButtonWrapper {
+  text-align: center;
+}
+.addDrinkButtonText {
+  color: $lightTeal;
+  padding-right: 5px;
 }
 .putOnTabButton-Enabled {
-  margin-top: 25px;
-  width: 50px;
-  height: 50px;
-  border: 2px solid $orange;
-  color: $orange;
+  width: 25px;
+  height: 25px;
+  border: 1px solid $lightOrange;
+  color: $lightOrange;
   background-color: rgba(0,0,0,0);
   i {
-    font-size: 20px;
+    font-size: 10px;
   }
 }
 .drinkTitle {
@@ -177,14 +237,19 @@ body {
   text-align: center;
 }
 .drinkTitleSelected {
+  text-align: center;
   color: $lightOrange;
   font-size: 25px;
 }
 
 .alcoholOrNot {
   color: $lightGrey;
+  text-align: center;
 }
+.centerText {
+  border: 1px solid red;
 
+}
 .youtube {
   max-width: 100%;
 }
