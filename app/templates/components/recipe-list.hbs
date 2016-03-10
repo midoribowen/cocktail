@@ -29,7 +29,9 @@
 
   <br>
 
-  {{#each model as |drink|}}
+  {{log sortedDrinks}}
+
+  {{#each sortedDrinks as |drink|}}
   {{#if (or (eq (not drink.isAlcoholic) showNotAlcoholic) (eq drink.isAlcoholic showAlcoholic))}}
   {{#if (or (eq (not drink.isHot) showCold) (eq drink.isHot showHot))}}
   {{#if (or (eq (not drink.isCarbonated) showNotCarbonated) (eq drink.isCarbonated showCarbonated))}}
