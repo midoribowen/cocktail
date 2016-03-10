@@ -1,27 +1,30 @@
-{{#if getIngredients}}
-  <div class="row">
-    <div class="container">
+<div class="checkoutWrapper">
+
+  <div class="guestsDiv">
+    <div class="outOfRange">
       {{#if outOfRange}}
-      <div class="container">
+      <div>
         <span>Input out of range! Use 1 to 1000.</span>
       </div>
       {{/if}}
-      <span>Guests</span>
-      {{input type="number" value=updateGuests id="updateGuests" placeholder="1 - 1000" key-up="updateGuests"}}
+      <span class="guestsSpan">Guests</span>
+      <br>
+      {{input type="number" class="guestInput" value=updateGuests id="updateGuests" placeholder="1 - 1000" key-up="updateGuests"}}
     </div>
   </div>
-{{/if}}
 
-{{#if getIngredients}}
-  <ul>
+  {{#if getIngredients}}
+  <ul class="removeFromCart">
     {{#each shoppingCart.recipes as |recipe|}}
-      <li>| {{recipe.name}} [<span {{action 'removeFromCart' recipe}}>X</span>] | </li>
+    <li>{{recipe.name}} <span {{action 'removeFromCart' recipe}}><i class="fa fa-times-circle"></i></span> </li>
     {{/each}}
   </ul>
 
-  <ul>
+  <ul class='ingredientList'>
     {{#each getIngredients as |ingredient|}}
-      <li>{{ingredient.amount}} {{ingredient.of}}</li>
+    <li>{{ingredient.amount}} {{ingredient.of}}</li>
     {{/each}}
   </ul>
-{{/if}}
+  {{/if}}
+
+</div>

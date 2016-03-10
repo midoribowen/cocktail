@@ -157,43 +157,192 @@ body {
 
 // RECIPE TILE.HBS STYLES+++++++++++++++++++++++++++
 
+.putOnTabButton-Enabled {
+  animation: rainbow2 5s ease-in-out infinite;
+}
+
+@keyframes rainbow2 {
+  0% {
+    border: 1px solid $orange;
+  }
+  12% {
+    border: 1px solid $orange;
+  }
+  37% {
+    border: 1px solid $purple;
+  }
+  62% {
+    border: 1px solid $teal;
+  }
+  87% {
+    border: 1px solid $blue;
+  }
+  100% {
+    border: 1px solid $orange;
+  }
+}
+
+.putOnTabButton-Enabled i {
+  animation: rainbow 5s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    color: $orange;
+  }
+  12% {
+    color: $orange;
+  }
+  37% {
+    color: $purple;
+  }
+  62% {
+    color: $teal;
+  }
+  87% {
+    color: $blue;
+  }
+  100% {
+    color: $orange;
+  }
+}
+
+
 .recipeTileDiv {
   color: $lightGrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.addDrinkButtonWrapper {
+  text-align: center;
+}
+.addDrinkButtonText {
+  color: $lightTeal;
+  padding-right: 5px;
 }
 .putOnTabButton-Enabled {
-  margin-top: 25px;
-  width: 50px;
-  height: 50px;
-  border: 2px solid $orange;
-  color: $orange;
-  background-color: rgba(0,0,0,0);
+  width: 25px;
+  height: 25px;
+  border: 1px solid $lightOrange;
+  color: $lightOrange;
+  background-color: $blackish;
   i {
-    font-size: 20px;
+    font-size: 10px;
+  }
+}
+
+.putOnTabButton-Disabled {
+  width: 25px;
+  height: 25px;
+  border: 1px solid $lightTeal;
+  color: $blackish;
+  background-color: $lightTeal;
+  i {
+    font-size: 10px;
   }
 }
 .drinkTitle {
   color: $lightTeal;
   font-size: 25px;
   text-align: center;
+  margin-top: 30px;
 }
 .drinkTitleSelected {
+  text-align: center;
   color: $lightOrange;
   font-size: 25px;
+  margin-top: 30px;
 }
 
 .alcoholOrNot {
   color: $lightGrey;
+  text-align: center;
 }
-
 .youtube {
   max-width: 100%;
 }
 
 .drink_tag {
-  border: 1px solid white;
-  border-radius: 8px;
-  background: teal;
-  color: white;
+  border: 1px solid $lightOrange;
+  color: $lightOrange;
   margin: 10px;
   padding: 5px;
 }
+
+
+// CHECKOUT-TILE STYLES +++++++++++++++++++++++++
+.checkoutWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: $lightGrey;
+  .guestsDiv {
+    display: flex;
+    justify-content: center;
+    .guestsSpan {
+      padding-bottom: 20px;
+      font-size: 18px;
+    }
+    .guestInput {
+      color: $blackish;
+    }
+    #updateGuests {
+      width: 100px;
+    }
+  }
+}
+
+// RECIPE-LIST STYLES +++++++++++++++++++++++++
+
+.recipeList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $lightGrey;
+  padding-top: 10px;
+}
+
+// CHECKOUT-TILE STYLES +++++++++++++++++++++++++
+
+.removeFromCart {
+  list-style-type: none;
+  padding: 10px 0;
+  color: $lightOrange;
+  i {
+    font-size: 20px;
+    padding-left: 5px;
+    color: $lightTeal;
+  }
+}
+.ingredientList {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// END
