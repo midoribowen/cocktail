@@ -5,9 +5,14 @@
 
 // VARIABLES+++++++++++++++++++++++
 
+// MEDIA SCREEN SIZES ++++++
+$tablet: "(min-width: 640px)";
+$desktop: "(min-width: 940px)";
+// COLOR ++++++
 $teal: rgb(0, 224, 201);
 $lightTeal: rgb(146, 252, 240);
 $purple: rgb(199, 73, 120);
+$lightPurple: rgb(255, 124, 170);
 $orange: rgb(242, 149, 38);
 $lightOrange: rgb(255, 199, 140);
 $blue: rgb(11, 30, 221);
@@ -94,20 +99,35 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80vh;
+  height: 85vh;
   width: 100%;
+  @media screen and #{$tablet} {
+      height: 50vh;
+    }
   .navBar {
     display: flex;
     justify-content: center;
-    background-color: rgba(242, 149, 38, .9);
+    background-color: rgba(7, 3, 4, .9);
     .links {
       width: 80%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: $teal;
       font-size: 30px;
       margin: 5px;
+      .logoIcon {
+        color: $teal;
+        text-decoration: none;
+        &:hover {
+          color: $teal;
+        }
+        &:active {
+          color: $teal;
+        }
+        &:visited {
+          color: $teal;
+        }
+      }
       .cartDiv {
         color: white;
         display: flex;
@@ -154,18 +174,14 @@ body {
   }
 }
 
+// ADD TO DRINK LIST DROPDOWN STYLES +++++++++++++++++++
 .navBar {
   .links {
     .btn-group {
       button.cartDiv {
         background-image: none;
         background-color: rgba(199, 73, 120, 0);
-        font-size: 30px;
-        &.open {
-          background-image: none;
-          background-color: rgba(199, 73, 120, 0);
-          font-size: 30px;
-        }
+        font-size: 25px;
         .itemsInCart {
           padding-left: 5px;
           font-size: 25px;
@@ -178,6 +194,21 @@ body {
         max-height: 90vh !important;
         overflow: scroll;
         // height: 500px !important;
+      }
+    }
+  }
+}
+
+.navBar {
+  .links {
+    .btn-group.open {
+      box-shadow: none;
+      font-size: 25px;
+      .cart {
+        color: $lightPurple;
+      }
+      .itemsInCart {
+        color: $lightPurple;
       }
     }
   }
@@ -236,6 +267,12 @@ body {
   }
 }
 
+// NO DRINKS FOUND STYLE +++++++++++++++++++++++
+
+.noDrinksFound {
+  color: $purple;
+  text-align: center;
+}
 
 .recipeTileDiv {
   color: $lightGrey;
