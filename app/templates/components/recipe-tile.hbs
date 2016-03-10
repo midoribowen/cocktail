@@ -6,8 +6,8 @@
 
     {{#if killButton}}
       <div class="addDrinkButtonWrapper">
-        <span class="addDrinkButtonText">Add Drink</span>
-        <button class="putOnTabButton-Disabled" {{action 'addToCart'}} disabled><i class="fa fa-plus"></i></button>
+        <span class="addDrinkButtonText">Added</span>
+        <button class="putOnTabButton-Disabled" {{action 'addToCart'}} disabled><i class="fa fa-check"></i></button>
       </div>
       {{else}}
         <div class="addDrinkButtonWrapper">
@@ -30,29 +30,27 @@
       {{/if}}
     {{/each}}
 
-
-    <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
-    <p>
-      {{#each drinkTastes as |tastes|}}
-      <span class="centerText">{{tastes.text}}!</span>
-      {{/each}}
-    </p>
   </div>
+  <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
   <p>{{drinkCategory}}</p>
+  <h3 class="centerText">Tastes</h3>
+    {{#each drinkTastes as |tastes|}}
+    <p>{{tastes.text}}</p>
+    {{/each}}
+
   {{#if drinkOccasions}}
-  <p>Perfect for
+    <h3>Occasions</h3>
     {{#each drinkOccasions as |occasions|}}
-    {{capitalizeHelper occasions.id}} drinks!
+      <p>{{capitalizeHelper occasions.id}} drinks</p>
     {{/each}}
-  </p>
   {{/if}}
+
   <h3>Instructions</h3>
-  <ul>
-    <li><b>Served in - {{drinkServedIn}}</b></li>
+    <p><b>Served in - {{drinkServedIn}}</b></p>
     {{#each drinkInstructions as |instructions|}}
-    <li>{{instructions}}</li>
+    <p>{{instructions}}</p>
     {{/each}}
-  </ul>
+
   <h3>Tools</h3>
   {{#each drinkTools as |tool|}}
   <p>{{tool.text}}</p>
