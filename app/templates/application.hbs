@@ -1,12 +1,18 @@
 
 <div class="hero">
   <!-- NAVBAR -->
-  <div class="navBar">
+  <div class="navBar navbar-fixed-top">
     <div class="links">
       {{#link-to 'index'}}<span class="logoIcon"><i class="fa fa-glass"></i></span>{{/link-to}}
-      <div class="cartDiv">
-        <span class="cart"><i class="fa fa-list-ul"></i></span>
-        <span class="itemsInCart">{{items-in-cart}}</span>
+      <div class="btn-group">
+        <button class="cartDiv btn dropdown-toggle" data-toggle="dropdown">
+          <span class="cart"><i class="fa fa-list-ul"></i></span>
+          <span class="itemsInCart">{{items-in-cart}}</span>
+        </button>
+        <ul class="dropdown-menu pull-right">
+          <!-- CART CONTENTS -->
+          {{checkout-tile}}
+        </ul>
       </div>
     </div>
   </div>
@@ -21,6 +27,5 @@
   </div>
 </div>
 <div class="wrapper">
-  {{checkout-tile}}
   {{outlet}}
 </div>

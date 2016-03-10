@@ -99,6 +99,7 @@ body {
   .navBar {
     display: flex;
     justify-content: center;
+    background-color: rgba(242, 149, 38, .9);
     .links {
       width: 80%;
       display: flex;
@@ -106,16 +107,11 @@ body {
       align-items: center;
       color: $teal;
       font-size: 30px;
-      margin: 10px;
+      margin: 5px;
       .cartDiv {
         color: white;
         display: flex;
         align-items: center;
-        // width: 200px;
-        .itemsInCart {
-          padding-left: 5px;
-          font-size: 25px;
-        }
       }
     }
   }
@@ -126,13 +122,13 @@ body {
     justify-content: space-between;
     letter-spacing: 2px;
     // margin: 0;
-    margin-top: 125px;
+    margin-top: 200px;
     h1 {
       margin: 10px;
       color: rgba(255, 255, 255, 1);
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
       letter-spacing: 5px;
-      font-size: 90px;
+      font-size: 70px;
       font-family: "Open Sans";
       font-weight: 800;
     }
@@ -153,6 +149,35 @@ body {
       background-color: rgba(0,0,0,0);
       i {
         font-size: 20px;
+      }
+    }
+  }
+}
+
+.navBar {
+  .links {
+    .btn-group {
+      button.cartDiv {
+        background-image: none;
+        background-color: rgba(199, 73, 120, 0);
+        font-size: 30px;
+        &.open {
+          background-image: none;
+          background-color: rgba(199, 73, 120, 0);
+          font-size: 30px;
+        }
+        .itemsInCart {
+          padding-left: 5px;
+          font-size: 25px;
+        }
+      }
+      ul.dropdown-menu {
+        background-image: none;
+        background-color: rgba(199, 73, 120, .95);
+        width: 300px !important;
+        max-height: 90vh !important;
+        overflow: scroll;
+        // height: 500px !important;
       }
     }
   }
@@ -224,26 +249,31 @@ body {
 .addDrinkButtonText {
   color: $lightTeal;
   padding-right: 5px;
+  margin: 0;
 }
 .putOnTabButton-Enabled {
   width: 25px;
   height: 25px;
+  padding: 0;
   border: 1px solid $lightOrange;
   color: $lightOrange;
   background-color: $blackish;
   i {
     font-size: 10px;
+    vertical-align: middle;
   }
 }
 
 .putOnTabButton-Disabled {
   width: 25px;
   height: 25px;
+  padding: 0;
   border: 1px solid $lightTeal;
   color: $blackish;
   background-color: $lightTeal;
   i {
     font-size: 10px;
+    vertical-align: middle;
   }
 }
 .drinkTitle {
@@ -306,7 +336,7 @@ body {
   align-items: center;
   text-align: center;
   color: $lightGrey;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 // CHECKOUT-TILE STYLES +++++++++++++++++++++++++
@@ -315,6 +345,7 @@ body {
   list-style-type: none;
   padding: 10px 0;
   color: $lightOrange;
+  font-size: 20px;
   i {
     font-size: 20px;
     padding-left: 5px;
@@ -323,7 +354,7 @@ body {
 }
 .ingredientList {
   list-style-type: none;
-  padding: 0;
+  padding: 15px 0;
 }
 
 
