@@ -3,9 +3,9 @@
   <!-- NAVBAR -->
   <div class="navBar">
     <div class="links">
-      <span class="logoIcon"><i class="fa fa-glass"></i></span>
+      {{#link-to 'index'}}<span class="logoIcon"><i class="fa fa-glass"></i></span>{{/link-to}}
       <div class="cartDiv">
-        <span class="cart"><i class="fa fa-cart-arrow-down"></i></span>
+        <span class="cart"><i class="fa fa-list-ul"></i></span>
         <span class="itemsInCart">{{items-in-cart}}</span>
       </div>
     </div>
