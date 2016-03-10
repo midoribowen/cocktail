@@ -1,5 +1,5 @@
-<form>
+<form {{action 'search' on='submit'}}>
   <label for="search"></label>
-  {{input value=search id='search' class="form-control"}}
-  <button id="searchButton" {{action 'search'}}><i class="fa fa-glass"></i></button>
+  {{input value=drinksearch placeholder="Search Drinks" id='search' class="form-control"}}
+  <button id="searchButton" type="submit"><i class="fa fa-glass"></i></button>
 </form>

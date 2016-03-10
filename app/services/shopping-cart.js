@@ -17,11 +17,11 @@ export default Ember.Service.extend({
       var quantityWithFraction = ingredient.textPlain.match(/^([0-9¼½½⅓⅔¾])+/i);
       var quantityWithoutFraction = ingredient.textPlain.match(/^([0-9])+/i);
       var fractionsOnly = ingredient.textPlain.match(/([¼½½⅓⅔¾])+/i);
-
+      var newString = "";
       if (quantityWithFraction) {
-        var newString = ingredient.textPlain.substring(quantityWithFraction.length);
+        newString = ingredient.textPlain.substring(quantityWithFraction.length);
       } else {
-        var newString = ingredient.textPlain;
+        newString = ingredient.textPlain;
       }
 
       var runningTotal = (parseFloat(quantityWithoutFraction) > 0) ? parseFloat(quantityWithoutFraction) : 0;
@@ -53,11 +53,10 @@ export default Ember.Service.extend({
         ingredient_id: ingredient.id,
         amount: runningTotal,
         newString: newString,
-      }
+      };
       self.get('allIngredients').pushObject(pair);
       self.notifyPropertyChange('allIngredients');
       self.notifyPropertyChange('recipes');
-
     });
   },
 
@@ -84,5 +83,11 @@ export default Ember.Service.extend({
      }
    });
    return result;
+ },
+
+ multiplyForGuests( ) {
+   // Work around to always referesh the computed property when user
+   // clicks the update button.
+   this.notifyPropertyChange('allIngredients');
  }
 });

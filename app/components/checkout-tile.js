@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   shoppingCart: Ember.inject.service('shopping-cart'),
+  guests: 0,
+  outOfRange: false,
   KEYWORDS: {
     Quarter: 0.25,
     Quarters: 0.25,
@@ -15,31 +17,35 @@ export default Ember.Component.extend({
     Part: 45,
     Slice: 0.125,
     Piece: 0.125,
-    Splash: 0.125,
+    Splash: 3.7,
     Whole: 0.0335, // To "pint"
   },
   getIngredients: Ember.computed( 'shoppingCart.allIngredients', function( ) {
     var ingredients = this.get('shoppingCart').get('allIngredients');
     var result = [];
-    for( var i = 0; i < ingredients.length; i++ ) {
-      var params = {};
-      var foundMatching = false;
-      for( var j = 0; j < result.length; j++ ) {
-          if( result[ j ]["id"] === ingredients[ i ].ingredient_id ) {
-            if( ingredients[ i ].amount ) {
-              result[ j ]["amount"] += ingredients[ i ].amount;
+    var guestCount = (this.get("guests") > 0) ? this.get("guests") * 2 : 2;
+    while( guestCount > 0){
+      for( var i = 0; i < ingredients.length; i++ ) {
+        var params = {};
+        var foundMatching = false;
+        for( var j = 0; j < result.length; j++ ) {
+            if( result[ j ]["id"] === ingredients[ i ].ingredient_id ) {
+              if( ingredients[ i ].amount ) {
+                result[ j ]["amount"] += ingredients[ i ].amount;
+              }
+              foundMatching = true;
             }
-            foundMatching = true;
-          }
-      }
-      if(!foundMatching) {
-        if( ingredients[ i ].amount > 0 ) {
-          params["amount"] = ingredients[ i ].amount;
         }
-        params["of"] = ingredients[ i ].newString;
-        params["id"] = ingredients[ i ].ingredient_id;
-        result.pushObject( params );
+        if(!foundMatching) {
+          if( ingredients[ i ].amount > 0 ) {
+            params["amount"] = ingredients[ i ].amount;
+          }
+          params["of"] = ingredients[ i ].newString;
+          params["id"] = ingredients[ i ].ingredient_id;
+          result.pushObject( params );
+        }
       }
+      guestCount -= 1;
     }
     for( var r = 0; r < result.length; r++ ) {
       for( var p in this.get("KEYWORDS") ) {
@@ -50,13 +56,13 @@ export default Ember.Component.extend({
               case "Halves":
               result[r]["amount"] *= this.get("KEYWORDS")[p.toString( )];
               result[r]["of"] = result[r]["of"].replace(/(Half[^\s\\]|Halves)/g, "");
-              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)")
+              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)");
               break;
               case "Quarter":
               case "Quarters":
               result[r]["amount"] = Math.ceil( result[r]["amount"] * this.get("KEYWORDS")[p.toString( )] );
               result[r]["of"] = result[r]["of"].replace(/(Quarter[^\s\\]|Quarters)/g, "");
-              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)")
+              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)");
               break;
               case "Slice":
               case "Piece":
@@ -67,10 +73,10 @@ export default Ember.Component.extend({
               var wedgeConversion = result[r]["amount"];
               var starting = wedgeConversion;
               wedgeConversion *= this.get("KEYWORDS")[p.toString( )];
-              result[r]["amount"] = Math.ceil( wedgeConversion ).toString( );;
+              result[r]["amount"] = Math.ceil( wedgeConversion ).toString( );
               result[r]["of"] = result[r]["of"].replace(/(Wedge|Wheel|Slice|Piece|Twist|Peel)/g, "");
               result[r]["of"] = result[r]["of"].replace(/Lime/g, "Lime(s)");
-              result[r]["of"] = result[r]["of"].replace(/Lemon/g, "Lemon(s)")
+              result[r]["of"] = result[r]["of"].replace(/Lemon/g, "Lemon(s)");
               if(result[r]["of"].includes("Twist")) {
                 result[r]["of"] += " (Twist)";
               }
@@ -98,6 +104,13 @@ export default Ember.Component.extend({
                            result[r]["of"].includes("Puree") ) {
                   result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash)/g, "Bottle(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                } else if( result[r]["of"].includes("Milk") || result[r]["of"].includes("Cream") ) {
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "Gallon(s)");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                } else if( result[r]["of"].includes("Coffee") ) {
+                  result[r]["amount"] = "";
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 } else {
                   result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Fifth(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
@@ -105,7 +118,25 @@ export default Ember.Component.extend({
               }
               else {
                 result[r]["amount"] = Math.ceil( parseFloat( mlAmount / 1500 ) );
-                result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Handle(s)");
+                if( result[r]["of"].includes("Simple Syrup") ||
+                           result[r]["of"].includes("Water") ||
+                           result[r]["of"].includes("Juice") ||
+                           result[r]["of"].includes("Sherry") ||
+                           result[r]["of"].includes("Nectar") ||
+                           result[r]["of"].includes("Puree") ) {
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part|Splash)/g, "Bottle(s)");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                } else if( result[r]["of"].includes("Milk") || result[r]["of"].includes("Cream") ) {
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "Gallon(s)");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                } else if( result[r]["of"].includes("Coffee") ) {
+                  result[r]["amount"] = "";
+                  result[r]["of"] = result[r]["of"].replace(/(Parts|Part)/g, "");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                } else {
+                  result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Handle(s)");
+                  result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
+                }
               }
               break;
             }
@@ -120,6 +151,15 @@ export default Ember.Component.extend({
     removeFromCart(drink) {
       this.get('shoppingCart').removeFromCart(drink);
     },
+    updateGuests( ) {
+      if( this.get("updateGuests") > 1000 || this.get("updateGuests") < 1) {
+        this.set("outOfRange", true);
+      } else {
+        this.set( "guests", this.get("updateGuests") );
+        this.get('shoppingCart').multiplyForGuests( );
+        this.set("outOfRange", false);
+      }
+    }
   }
 });
 // Constants for size of bottles in ml

@@ -4,7 +4,8 @@ export default Ember.Component.extend({
 
   actions: {
     search() {
-      var query = this.get('search');
+      var query = this.get('drinksearch');
+      this.set('drinksearch', '');
       this.sendAction('search', query);
     }
   }
