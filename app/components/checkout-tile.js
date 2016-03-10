@@ -21,6 +21,7 @@ export default Ember.Component.extend({
     Whole: 0.0335,
     Dash: 0.9,
     Dashes: 0.9,
+    Mint: 1,
   },
   getIngredients: Ember.computed( 'shoppingCart.allIngredients', function( ) {
     var ingredients = this.get('shoppingCart').get('allIngredients');
@@ -86,10 +87,12 @@ export default Ember.Component.extend({
               break;
               case "Whole":
                 var wholeConversion = result[r]["amount"];
-                result[r]["of"] += " (" + wholeConversion + " total) ";
-                wholeConversion *= this.get("KEYWORDS")[p.toString( )];
-                result[r]["amount"] = Math.ceil( wholeConversion ).toString( );
-                result[r]["of"] = result[r]["of"].replace(/Whole/g, "Pint(s)");
+                if ((!result[r]["of"].includes("Mint")) && (result[r]["of"].includes("Whole"))) {
+                  result[r]["of"] += " (" + wholeConversion + " total) ";
+                  wholeConversion *= this.get("KEYWORDS")[p.toString( )];
+                  result[r]["amount"] = Math.ceil( wholeConversion ).toString( );
+                  result[r]["of"] = result[r]["of"].replace(/Whole/g, "Pint(s)");
+                }
               break;
               case "Part":
               case "Parts":
@@ -124,7 +127,7 @@ export default Ember.Component.extend({
                   result[r]["of"] = result[r]["of"].replace(/(Part[^\s\\]|Part)/g, "Fifth(s)");
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
-              } 
+              }
               else {
                 result[r]["amount"] = Math.ceil( parseFloat( mlAmount / 1500 ) );
                 if( result[r]["of"].includes("Simple Syrup") ||
@@ -152,6 +155,12 @@ export default Ember.Component.extend({
                   result[r]["of"] += " (" + mlAmount + "ml) " + "(" + ( mlAmount * 0.033814 ).toFixed(3).toString( ) + "oz)";
                 }
               }
+              break;
+              case "Mint":
+                var mintConversion = result[r]["amount"];
+                result[r]["of"] += " (" + mintConversion + " total) ";
+                result[r]["amount"] *= this.get("KEYWORDS")[p.toString( )];
+                result[r]["of"] = result[r]["of"].replace(/Leaf/g, "Leaves");
               break;
             }
           }
