@@ -160,6 +160,7 @@ export default Ember.Component.extend({
                 var mintConversion = result[r]["amount"];
                 result[r]["of"] += " (" + mintConversion + " total) ";
                 result[r]["amount"] *= this.get("KEYWORDS")[p.toString( )];
+                result[r]["of"] = result[r]["of"].replace(/Whole|Leaves/g, "");
                 result[r]["of"] = result[r]["of"].replace(/Leaf/g, "Leaves");
               break;
             }
