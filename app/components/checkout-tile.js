@@ -56,13 +56,13 @@ export default Ember.Component.extend({
               case "Halves":
               result[r]["amount"] *= this.get("KEYWORDS")[p.toString( )];
               result[r]["of"] = result[r]["of"].replace(/(Half[^\s\\]|Halves)/g, "");
-              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)")
+              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)");
               break;
               case "Quarter":
               case "Quarters":
               result[r]["amount"] = Math.ceil( result[r]["amount"] * this.get("KEYWORDS")[p.toString( )] );
               result[r]["of"] = result[r]["of"].replace(/(Quarter[^\s\\]|Quarters)/g, "");
-              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)")
+              result[r]["of"] = result[r]["of"].replace(/Peach/g, "Peach(es)");
               break;
               case "Slice":
               case "Piece":
@@ -73,10 +73,10 @@ export default Ember.Component.extend({
               var wedgeConversion = result[r]["amount"];
               var starting = wedgeConversion;
               wedgeConversion *= this.get("KEYWORDS")[p.toString( )];
-              result[r]["amount"] = Math.ceil( wedgeConversion ).toString( );;
+              result[r]["amount"] = Math.ceil( wedgeConversion ).toString( );
               result[r]["of"] = result[r]["of"].replace(/(Wedge|Wheel|Slice|Piece|Twist|Peel)/g, "");
               result[r]["of"] = result[r]["of"].replace(/Lime/g, "Lime(s)");
-              result[r]["of"] = result[r]["of"].replace(/Lemon/g, "Lemon(s)")
+              result[r]["of"] = result[r]["of"].replace(/Lemon/g, "Lemon(s)");
               if(result[r]["of"].includes("Twist")) {
                 result[r]["of"] += " (Twist)";
               }
