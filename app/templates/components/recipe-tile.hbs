@@ -3,8 +3,14 @@
   <div class="drink-title-header">
     <h1 class="drinkTitleSelected" {{action 'close'}}>{{drinkName}}</h1>
     <p class="alcoholOrNot">({{drinkAlcoholic}})</p>
-    <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
 
+    {{#if killButton}}
+    <button class="putOnTabButton-Disabled" {{action 'addToCart'}} disabled>Put it on my tab <i class="fa fa-glass"></i></button>
+    {{else}}
+    <button class="putOnTabButton-Enabled"{{action 'addToCart'}}>Put it on my tab <i class="fa fa-glass"></i></button>
+    {{/if}}
+
+    <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
     <p>
       {{#each drinkTastes as |tastes|}}
       <span>{{tastes.text}}!</span>
@@ -42,11 +48,7 @@
   {{/if}}
   <br>
 
-  {{#if killButton}}
-  <button class="putInOnMyTabButton" {{action 'addToCart'}} disabled>Put it on my tab!</button>
-  {{else}}
-  <button {{action 'addToCart'}}>Put it on my tab!</button>
-  {{/if}}
+
 </div>
 {{else}}
   <h1 class="drinkTitle"{{action 'open'}}>{{drinkName}}</h1>

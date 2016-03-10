@@ -34,7 +34,7 @@ body {
 // SEARCH COCKTAIL GLASS ICON ANIMATION ==============
 
 #searchButton {
-  animation: rainbow2 5s 1s ease-in-out infinite;
+  animation: rainbow2 5s ease-in-out infinite;
 }
 
 @keyframes rainbow2 {
@@ -59,7 +59,7 @@ body {
 }
 
 #searchButton i {
-  animation: rainbow 5s 1s ease-in-out infinite;
+  animation: rainbow 5s ease-in-out infinite;
 }
 
 @keyframes rainbow {
@@ -157,6 +157,20 @@ body {
 
 // RECIPE TILE.HBS STYLES+++++++++++++++++++++++++++
 
+.recipeTileDiv {
+  color: $lightGrey;
+}
+.putOnTabButton-Enabled {
+  margin-top: 25px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid $orange;
+  color: $orange;
+  background-color: rgba(0,0,0,0);
+  i {
+    font-size: 20px;
+  }
+}
 .drinkTitle {
   color: $lightTeal;
   font-size: 25px;
