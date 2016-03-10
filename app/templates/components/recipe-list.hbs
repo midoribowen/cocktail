@@ -1,30 +1,42 @@
-<label for="alcoholicOrNot"> Alcoholic or Not </label>
-{{#x-select action='alcoholicOrNot' default='both' id='alcoholicOrNot'}}
-  {{#x-option value='both'}}Both{{/x-option}}
-  {{#x-option value='nonalcoholic'}}Non-Alcoholic{{/x-option}}
-  {{#x-option value='alcoholic'}}Alcoholic{{/x-option}}
-{{/x-select}}
+<div class="recipeList">
 
-<label for="hotOrCold"> Hot or Cold </label>
-{{#x-select action='hotOrCold' default='both' id='hotOrCold'}}
+  <!-- <div class="yesNoAlcohol"> -->
+    <label for="alcoholicOrNot"> Alcoholic or Not </label>
+    {{#x-select action='alcoholicOrNot' default='both' id='alcoholicOrNot'}}
+    {{#x-option value='both'}}Both{{/x-option}}
+    {{#x-option value='nonalcoholic'}}Non-Alcoholic{{/x-option}}
+    {{#x-option value='alcoholic'}}Alcoholic{{/x-option}}
+    {{/x-select}}
+  <!-- </div> -->
+
+  <br>
+
+  <label for="hotOrCold"> Hot or Cold </label>
+  {{#x-select action='hotOrCold' default='both' id='hotOrCold'}}
   {{#x-option value='both'}}Both{{/x-option}}
   {{#x-option value='hot'}}Hot{{/x-option}}
   {{#x-option value='cold'}}Cold{{/x-option}}
-{{/x-select}}
+  {{/x-select}}
 
-<label for="carbonatedOrNot"> Carbonated or Not </label>
-{{#x-select action='carbonatedOrNot' default='both' id='carbonatedOrNot'}}
+  <br>
+
+  <label for="carbonatedOrNot"> Carbonated or Not </label>
+  {{#x-select action='carbonatedOrNot' default='both' id='carbonatedOrNot'}}
   {{#x-option value='both'}}Both{{/x-option}}
   {{#x-option value='noncarbonated'}}Noncarbonated{{/x-option}}
   {{#x-option value='carbonated'}}Carbonated{{/x-option}}
-{{/x-select}}
+  {{/x-select}}
 
-{{#each model as |drink|}}
+  <br>
+
+  {{#each model as |drink|}}
   {{#if (or (eq (not drink.isAlcoholic) showNotAlcoholic) (eq drink.isAlcoholic showAlcoholic))}}
-    {{#if (or (eq (not drink.isHot) showCold) (eq drink.isHot showHot))}}
-      {{#if (or (eq (not drink.isCarbonated) showNotCarbonated) (eq drink.isCarbonated showCarbonated))}}
-        {{recipe-tile drink=drink addToCart='addToCart'}}
-      {{/if}}
-    {{/if}}
+  {{#if (or (eq (not drink.isHot) showCold) (eq drink.isHot showHot))}}
+  {{#if (or (eq (not drink.isCarbonated) showNotCarbonated) (eq drink.isCarbonated showCarbonated))}}
+  {{recipe-tile drink=drink addToCart='addToCart'}}
   {{/if}}
-{{/each}}
+  {{/if}}
+  {{/if}}
+  {{/each}}
+
+</div>

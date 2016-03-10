@@ -4,6 +4,20 @@
     <h1 class="drinkTitleSelected" {{action 'close'}}>{{drinkName}}</h1>
     <p class="alcoholOrNot">({{drinkAlcoholic}})</p>
 
+    {{#if killButton}}
+      <div class="addDrinkButtonWrapper">
+        <span class="addDrinkButtonText">Added</span>
+        <button class="putOnTabButton-Disabled" {{action 'addToCart'}} disabled><i class="fa fa-check"></i></button>
+      </div>
+      {{else}}
+        <div class="addDrinkButtonWrapper">
+          <span class="addDrinkButtonText">Add Drink</span>
+          <button class="putOnTabButton-Enabled"{{action 'addToCart'}}><i class="fa fa-plus"></i></button>
+        </div>
+    {{/if}}
+
+    <br>
+
     {{#each drink.tags as |tag|}}
       {{#if (eq tag.name 'Top 25')}}
         <span class='drink_tag'>TOP 25</span>
@@ -16,40 +30,31 @@
       {{/if}}
     {{/each}}
 
-    {{#if killButton}}
-    <button class="putOnTabButton-Disabled" {{action 'addToCart'}} disabled>Put it on my tab <i class="fa fa-glass"></i></button>
-    {{else}}
-    <button class="putOnTabButton-Enabled"{{action 'addToCart'}}>Put it on my tab <i class="fa fa-glass"></i></button>
-    {{/if}}
-
-    <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
-    <p>
-      {{#each drinkTastes as |tastes|}}
-      <span>{{tastes.text}}!</span>
-      {{/each}}
-    </p>
   </div>
+  <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
   <p>{{drinkCategory}}</p>
+  <h3 class="centerText">Tastes</h3>
+    {{#each drinkTastes as |tastes|}}
+    <p>{{tastes.text}}</p>
+    {{/each}}
+
   {{#if drinkOccasions}}
-  <p>Perfect for
+    <h3>Occasions</h3>
     {{#each drinkOccasions as |occasions|}}
-    {{capitalizeHelper occasions.id}} drinks!
+      <p>{{capitalizeHelper occasions.id}} drinks</p>
     {{/each}}
-  </p>
   {{/if}}
+
   <h3>Instructions</h3>
-  <ul>
-    <li><b>Served in - {{drinkServedIn}}</b></li>
+    <p><b>Served in - {{drinkServedIn}}</b></p>
     {{#each drinkInstructions as |instructions|}}
-    <li>{{instructions}}</li>
+    <p>{{instructions}}</p>
     {{/each}}
-  </ul>
+
   <h3>Tools</h3>
-  <ul>
-    {{#each drinkTools as |tool|}}
-    <li>{{tool.text}}</li>
-    {{/each}}
-  </ul>
+  {{#each drinkTools as |tool|}}
+  <p>{{tool.text}}</p>
+  {{/each}}
 
   <h3>Ingredients</h3>
   {{#each drinkIngredients as |ingredient|}}
