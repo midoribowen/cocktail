@@ -107,16 +107,11 @@ body {
       align-items: center;
       color: $teal;
       font-size: 30px;
-      margin: 10px;
+      margin: 5px;
       .cartDiv {
         color: white;
         display: flex;
         align-items: center;
-        // width: 200px;
-        .itemsInCart {
-          padding-left: 5px;
-          font-size: 25px;
-        }
       }
     }
   }
@@ -154,6 +149,35 @@ body {
       background-color: rgba(0,0,0,0);
       i {
         font-size: 20px;
+      }
+    }
+  }
+}
+
+.navBar {
+  .links {
+    .btn-group {
+      button.cartDiv {
+        background-image: none;
+        background-color: rgba(199, 73, 120, 0);
+        font-size: 30px;
+        &.open {
+          background-image: none;
+          background-color: rgba(199, 73, 120, 0);
+          font-size: 30px;
+        }
+        .itemsInCart {
+          padding-left: 5px;
+          font-size: 25px;
+        }
+      }
+      ul.dropdown-menu {
+        background-image: none;
+        background-color: rgba(199, 73, 120, .95);
+        width: 300px !important;
+        max-height: 90vh !important;
+        overflow: scroll;
+        // height: 500px !important;
       }
     }
   }
@@ -312,7 +336,7 @@ body {
   align-items: center;
   text-align: center;
   color: $lightGrey;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 // CHECKOUT-TILE STYLES +++++++++++++++++++++++++
@@ -321,6 +345,7 @@ body {
   list-style-type: none;
   padding: 10px 0;
   color: $lightOrange;
+  font-size: 20px;
   i {
     font-size: 20px;
     padding-left: 5px;
@@ -329,7 +354,7 @@ body {
 }
 .ingredientList {
   list-style-type: none;
-  padding: 0;
+  padding: 15px 0;
 }
 
 
