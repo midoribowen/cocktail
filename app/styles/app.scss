@@ -127,13 +127,13 @@ body {
     justify-content: space-between;
     letter-spacing: 2px;
     // margin: 0;
-    margin-top: 125px;
+    margin-top: 200px;
     h1 {
       margin: 10px;
       color: rgba(255, 255, 255, 1);
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
       letter-spacing: 5px;
-      font-size: 90px;
+      font-size: 70px;
       font-family: "Open Sans";
       font-weight: 800;
     }
@@ -225,26 +225,31 @@ body {
 .addDrinkButtonText {
   color: $lightTeal;
   padding-right: 5px;
+  margin: 0;
 }
 .putOnTabButton-Enabled {
   width: 25px;
   height: 25px;
+  padding: 0;
   border: 1px solid $lightOrange;
   color: $lightOrange;
   background-color: $blackish;
   i {
     font-size: 10px;
+    vertical-align: middle;
   }
 }
 
 .putOnTabButton-Disabled {
   width: 25px;
   height: 25px;
+  padding: 0;
   border: 1px solid $lightTeal;
   color: $blackish;
   background-color: $lightTeal;
   i {
     font-size: 10px;
+    vertical-align: middle;
   }
 }
 .drinkTitle {
