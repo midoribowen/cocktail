@@ -1,4 +1,5 @@
 //override bootstrap variables here
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800);
 
 @import 'bootstrap';
 
@@ -26,6 +27,7 @@ $lightGrey: rgb(242, 242, 242);
 
 body {
   background-color: $blackish;
+  font-size: 16px;
 }
 .wrapper {
   margin: 20px;
@@ -132,6 +134,8 @@ body {
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
       letter-spacing: 5px;
       font-size: 90px;
+      font-family: "Open Sans";
+      font-weight: 800;
     }
   }
   .searchDiv {
