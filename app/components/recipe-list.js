@@ -8,6 +8,10 @@ export default Ember.Component.extend({
   showCarbonated: true,
   showNotCarbonated: true,
 
+
+  sortProperties: ['name'],
+  sortedDrinks: Ember.computed.sort('model', 'sortProperties'),
+
   actions: {
     alcoholicOrNot(selection) {
       if (selection === 'alcoholic') {
