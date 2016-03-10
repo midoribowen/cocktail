@@ -37,8 +37,8 @@ export default Ember.Component.extend({
           youtubeLink = vidLinks[ i ].video;
         }
       }
+      return youtubeLink;
     }
-    return youtubeLink;
   }),
   drinkTools: Ember.computed( function( ) {
     return this.get('drink').tools;
