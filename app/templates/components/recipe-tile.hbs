@@ -1,72 +1,67 @@
 {{#if opened}}
-  <div class="row">
-    <div class="drink-title-header">
-      <h1 {{action 'close'}}>{{drinkName}}</h1>
+<div class="recipeTileDiv">
+  <div class="drink-title-header">
+    <h1 class="drinkTitleSelected" {{action 'close'}}>{{drinkName}}</h1>
+    <p class="alcoholOrNot">({{drinkAlcoholic}})</p>
 
-      {{#each drink.tags as |tag|}}
-        {{#if (eq tag.name 'Top 25')}}
-          <span class='drink_tag'>TOP 25</span>
-        {{/if}}
-        {{#if (eq tag.name 'cat_60s_era_cocktails')}}
-          <span class='drink_tag'>MAD MEN SPECIAL</span>
-        {{/if}}
-        {{#if (eq tag.name 'occ_partynight')}}
-          <span class='drink_tag'>PARTY NIGHT</span>
-        {{/if}}
-      {{/each}}
+    {{#each drink.tags as |tag|}}
+      {{#if (eq tag.name 'Top 25')}}
+        <span class='drink_tag'>TOP 25</span>
+      {{/if}}
+      {{#if (eq tag.name 'cat_60s_era_cocktails')}}
+        <span class='drink_tag'>MAD MEN SPECIAL</span>
+      {{/if}}
+      {{#if (eq tag.name 'occ_partynight')}}
+        <span class='drink_tag'>PARTY NIGHT</span>
+      {{/if}}
+    {{/each}}
 
-      <p>({{drinkAlcoholic}})</p>
-        <img src="http://assets.absolutdrinks.com/drinks/transparent-background-white/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
-
-      <p>
-        {{#each drinkTastes as |tastes|}}
-        <span>{{tastes.text}}!</span>
-        {{/each}}
-      </p>
-    </div>
-    <p>{{drinkCategory}}</p>
-    {{#if drinkOccasions}}
-      <p>Perfect for
-        {{#each drinkOccasions as |occasions|}}
-        {{capitalizeHelper occasions.id}} drinks!
-        {{/each}}
-      </p>
+    {{#if killButton}}
+    <button class="putOnTabButton-Disabled" {{action 'addToCart'}} disabled>Put it on my tab <i class="fa fa-glass"></i></button>
+    {{else}}
+    <button class="putOnTabButton-Enabled"{{action 'addToCart'}}>Put it on my tab <i class="fa fa-glass"></i></button>
     {{/if}}
-    <div class="container">
-      <h3>Instructions</h3>
-      <ul>
-      <li><b>Served in - {{drinkServedIn}}</b></li>
-      {{#each drinkInstructions as |instructions|}}
-        <li>{{instructions}}</li>
+
+    <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
+    <p>
+      {{#each drinkTastes as |tastes|}}
+      <span>{{tastes.text}}!</span>
       {{/each}}
-    </ul>
-      <h3>Tools</h3>
-      <ul>
-        {{#each drinkTools as |tool|}}
-        <li>{{tool.text}}</li>
-        {{/each}}
-      </ul>
-    </div>
+    </p>
   </div>
+  <p>{{drinkCategory}}</p>
+  {{#if drinkOccasions}}
+  <p>Perfect for
+    {{#each drinkOccasions as |occasions|}}
+    {{capitalizeHelper occasions.id}} drinks!
+    {{/each}}
+  </p>
+  {{/if}}
+  <h3>Instructions</h3>
+  <ul>
+    <li><b>Served in - {{drinkServedIn}}</b></li>
+    {{#each drinkInstructions as |instructions|}}
+    <li>{{instructions}}</li>
+    {{/each}}
+  </ul>
+  <h3>Tools</h3>
+  <ul>
+    {{#each drinkTools as |tool|}}
+    <li>{{tool.text}}</li>
+    {{/each}}
+  </ul>
 
   <h3>Ingredients</h3>
-  <div class="row">
-    <div class="container">
-      {{#each drinkIngredients as |ingredient|}}
-        <p>{{ingredient.textPlain}}</p>
-      {{/each}}
-      {{#if drinkVideo}}
-        <iframe src="http://www.youtube.com/embed/{{drinkVideo}}" width="480" height="390" title="Drinks!" allowfullscreen frameborder="0"></iframe>
-      {{/if}}
-    </div>
-  </div>
-  {{#if killButton}}
-    <button {{action 'addToCart'}} disabled>Put it on my tab!</button>
-    {{else}}
-      <button {{action 'addToCart'}}>Put it on my tab!</button>
+  {{#each drinkIngredients as |ingredient|}}
+  <p>{{ingredient.textPlain}}</p>
+  {{/each}}
+  {{#if drinkVideo}}
+  <iframe class="youtube" src="http://www.youtube.com/embed/{{drinkVideo}}"  title="Drinks!" allowfullscreen frameborder="0"></iframe>
   {{/if}}
 
+</div>
+
 {{else}}
-  <h1 {{action 'open'}}>{{drinkName}}</h1>
+  <h1 class="drinkTitle"{{action 'open'}}>{{drinkName}}</h1>
 
 {{/if}}
