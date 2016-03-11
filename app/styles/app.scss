@@ -39,6 +39,7 @@ body {
     color: $lightGrey;
     font-size: 12px;
     margin: 0 2px 10px 2px;
+    padding-right: 10px;
   }
 }
 .wrapper {
@@ -202,13 +203,21 @@ body {
   }
 }
 
+// .searchDrinksForm {
+//   #search {
+//
+//   }
+// }
+
 .searchDrinksForm {
+  #search {
+    text-align: center;
+  }
     @media screen and #{$tablet} {
       width: 250px;
       #search {
         height: 40px;
         font-size: 25px;
-        text-align: center;
         background-color: white;
       }
     }
@@ -450,18 +459,42 @@ body {
     display: flex;
     justify-content: center;
     .guestsSpan {
-      padding-bottom: 20px;
       font-size: 18px;
+      text-align: center;
+      @media screen and #{$tablet} {
+        font-size: 25px;
+      }
     }
     .guestInput {
       color: $blackish;
     }
-    #updateGuests {
+    input#updateGuests {
       width: 100px;
+      justify-content: center;
+      align-items: center;
+      @media screen and #{$tablet} {
+        width: 150px;
+        height: 40px;
+        font-size: 20px;
+      }
     }
   }
 }
 
+.outOfRange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.guestForm {
+  text-align: center;
+  justify-content: center;
+  margin-right: 0 !important;
+  padding: 0;
+}
 // RECIPE-LIST STYLES +++++++++++++++++++++++++
 
 .recipeList {
@@ -490,40 +523,68 @@ body {
   padding: 10px 0;
   color: $lightOrange;
   font-size: 20px;
+  @media screen and #{$tablet} {
+    font-size: 30px;
+  }
   i {
     font-size: 20px;
-    padding-left: 10px;
+    padding-left: 5px;
     color: $lightTeal;
+    @media screen and #{$tablet} {
+      font-size: 30px;
+    }
   }
 }
 .ingredientList {
   list-style-type: none;
   padding: 15px 0;
+  @media screen and #{$tablet} {
+    font-size: 20px;
+  }
+}
+
+// INDEX.HBS DISCLAIMER +++++++++++++++++++++++++++
+.legalAgeDisclaimer {
+  text-align: center;
+  font-size: 14px;
+  padding-top: 5px;
+  color: $lightGrey;
+  @media screen and #{$tablet} {
+    font-size: 18px;
+    padding-top: 15px;
+  }
 }
 
 .printLink {
   color: $lightOrange;
   text-decoration: none;
+  i {
+    color: $lightTeal;
+    padding-left: 5px;
+  }
+  @media screen and #{$tablet} {
+    font-size: 22px;
+  }
   &:hover {
     color: $lightOrange;
     text-decoration: none;
+    @media screen and #{$tablet} {
+      font-size: 22px;
+    }
   }
   &:active {
     color: $lightOrange;
+    @media screen and #{$tablet} {
+      font-size: 22px;
+    }
   }
   &:visited {
     color: $lightOrange;
+    @media screen and #{$tablet} {
+      font-size: 22px;
+    }
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 
