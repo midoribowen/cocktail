@@ -546,11 +546,45 @@ body {
 // INDEX.HBS DISCLAIMER +++++++++++++++++++++++++++
 .legalAgeDisclaimer {
   text-align: center;
+  font-size: 14px;
+  padding-top: 5px;
+  color: $lightGrey;
+  @media screen and #{$tablet} {
+    font-size: 18px;
+    padding-top: 15px;
+  }
 }
 
-
-
-
+.printLink {
+  color: $lightOrange;
+  text-decoration: none;
+  i {
+    color: $lightTeal;
+    padding-left: 5px;
+  }
+  @media screen and #{$tablet} {
+    font-size: 22px;
+  }
+  &:hover {
+    color: $lightOrange;
+    text-decoration: none;
+    @media screen and #{$tablet} {
+      font-size: 22px;
+    }
+  }
+  &:active {
+    color: $lightOrange;
+    @media screen and #{$tablet} {
+      font-size: 22px;
+    }
+  }
+  &:visited {
+    color: $lightOrange;
+    @media screen and #{$tablet} {
+      font-size: 22px;
+    }
+  }
+}
 
 
 
