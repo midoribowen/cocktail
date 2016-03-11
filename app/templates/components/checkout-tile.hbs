@@ -24,6 +24,8 @@
       <li>{{ingredient.amount}} {{ingredient.of}}</li>
       {{/each}}
     </ul>
+
+    {{#link-to 'print' class='printLink'}}Printable Version{{/link-to}}
     {{else}}
       <p>
         There are no drinks on your list yet.

@@ -170,6 +170,7 @@ export default Ember.Component.extend({
         }
       }
     }
+    this.get('shoppingCart').saveResult(result);
     return result;
   }),
 
