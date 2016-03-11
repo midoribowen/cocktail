@@ -32,7 +32,7 @@
 
   </div>
   <img src="http://assets.absolutdrinks.com/drinks/transparent-background-black/floor-reflection/300x400/{{drink.id}}.png"  onerror="this.style.display='none'" alt="{{drinkName}}" />
-  <p>{{drinkCategory}}</p>
+  <p style="max-width: 640px">{{drinkCategory}}</p>
   <h3 class="centerText">Tastes</h3>
     {{#each drinkTastes as |tastes|}}
     <p>{{tastes.text}}</p>
