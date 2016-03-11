@@ -4,18 +4,18 @@
       <div class="outOfRange">
         {{#if outOfRange}}
         <div>
-          <span>Input out of range! Use 1 to 1000.</span>
+          <span>Please type a number between 1 and 1000.</span>
         </div>
         {{/if}}
         <span class="guestsSpan">Guests</span>
         <br>
-        {{input type="number" class="guestInput" value=updateGuests id="updateGuests" placeholder="1 - 1000" key-up="updateGuests"}}
+        {{input type="text" class="guestInput" min="1" max="1000" value=updateGuests id="updateGuests" placeholder="1 - 1000" key-up="updateGuests" oninput="updateGuests"}}
       </div>
     </div>
 
     <ul class="removeFromCart">
       {{#each shoppingCart.recipes as |recipe|}}
-      <li>{{recipe.name}} <span {{action 'removeFromCart' recipe}}><i class="fa fa-times-circle"></i></span> </li>
+      <li>{{recipe.name}} <span {{action 'removeFromCart' recipe bubbles=false}}><i class="fa fa-times-circle"></i></span> </li>
       {{/each}}
     </ul>
 
@@ -28,6 +28,5 @@
       <p>
         There are no drinks on your list yet.
       </p>
-
   {{/if}}
 </div>

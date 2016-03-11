@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     return this.get('drink').id;
   }),
   drinkCategory: Ember.computed( function( ) {
-    return this.get('drink').story;
+    return Ember.String.htmlSafe(this.get('drink').story);
   }),
   drinkAlcoholic: Ember.computed( function( ) {
     return( this.get('drink').isAlcoholic ) ? "Alcoholic" : "Non Alcoholic";
