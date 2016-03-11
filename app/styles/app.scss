@@ -102,7 +102,9 @@ body {
   height: 85vh;
   width: 100%;
   @media screen and #{$tablet} {
-      height: 50vh;
+      height: 80vh;
+      background-image: url("images/cocktailImage2.png");
+      background-position: top;
     }
   .navBar {
     display: flex;
@@ -115,6 +117,9 @@ body {
       align-items: center;
       font-size: 30px;
       margin: 5px;
+      @media screen and #{$tablet} {
+        font-size: 40px;
+        }
       .logoIcon {
         color: $teal;
         text-decoration: none;
@@ -141,8 +146,10 @@ body {
     align-items: center;
     justify-content: space-between;
     letter-spacing: 2px;
-    // margin: 0;
     margin-top: 200px;
+    @media screen and #{$tablet} {
+      margin-top: 40vh;
+      }
     h1 {
       margin: 10px;
       color: rgba(255, 255, 255, 1);
@@ -151,6 +158,9 @@ body {
       font-size: 70px;
       font-family: "Open Sans";
       font-weight: 800;
+      @media screen and #{$tablet} {
+        font-size: 100px;
+        }
     }
   }
   .searchDiv {
@@ -167,11 +177,34 @@ body {
       border: 2px solid $orange;
       color: $orange;
       background-color: rgba(0,0,0,0);
+      @media screen and #{$tablet} {
+        margin-top: 50px;
+        width: 100px;
+        height: 100px;
+        border: 2px solid $orange;
+        color: $orange;
+        background-color: rgba(0,0,0,0);
+      }
       i {
         font-size: 20px;
+        @media screen and #{$tablet} {
+          font-size: 60px;
+        }
       }
     }
   }
+}
+
+.searchDrinksForm {
+    @media screen and #{$tablet} {
+      width: 250px;
+      #search {
+        height: 40px;
+        font-size: 25px;
+        text-align: center;
+        background-color: white;
+      }
+    }
 }
 
 // ADD TO DRINK LIST DROPDOWN STYLES +++++++++++++++++++
@@ -182,18 +215,30 @@ body {
         background-image: none;
         background-color: rgba(199, 73, 120, 0);
         font-size: 25px;
+        .cart {
+          @media screen and #{$tablet} {
+            font-size: 40px;
+            }
+        }
         .itemsInCart {
           padding-left: 5px;
           font-size: 25px;
+          @media screen and #{$tablet} {
+            font-size: 40px;
+            }
         }
       }
-      ul.dropdown-menu {
+      .dropdown-menu {
         background-image: none;
-        background-color: rgba(199, 73, 120, .95);
-        width: 300px !important;
+        background-color: rgba(199, 73, 120, .95) !important;
+        width: 80vw !important;
         max-height: 90vh !important;
         overflow: scroll;
-        // height: 500px !important;
+        @media screen and #{$tablet} {
+          max-height: none;
+          overflow: auto;
+        }
+
       }
     }
   }
@@ -267,7 +312,7 @@ body {
   }
 }
 
-// NO DRINKS FOUND STYLE +++++++++++++++++++++++
+// "NO DRINKS FOUND" STYLE +++++++++++++++++++++++
 
 .noDrinksFound {
   color: $purple;
@@ -279,6 +324,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  @media screen and #{$tablet} {
+    h3 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
 }
 .addDrinkButtonWrapper {
   text-align: center;
@@ -287,6 +341,9 @@ body {
   color: $lightTeal;
   padding-right: 5px;
   margin: 0;
+  @media screen and #{$tablet} {
+    font-size: 20px;
+  }
 }
 .putOnTabButton-Enabled {
   width: 25px;
@@ -295,9 +352,16 @@ body {
   border: 1px solid $lightOrange;
   color: $lightOrange;
   background-color: $blackish;
+  @media screen and #{$tablet} {
+    width: 40px;
+    height: 40px;
+  }
   i {
     font-size: 10px;
     vertical-align: middle;
+    @media screen and #{$tablet} {
+      font-size: 20px;
+    }
   }
 }
 
@@ -308,30 +372,54 @@ body {
   border: 1px solid $lightTeal;
   color: $blackish;
   background-color: $lightTeal;
+  @media screen and #{$tablet} {
+    width: 40px;
+    height: 40px;
+  }
   i {
     font-size: 10px;
     vertical-align: middle;
+    @media screen and #{$tablet} {
+      font-size: 20px;
+    }
   }
 }
+
 .drinkTitle {
   color: $lightTeal;
   font-size: 25px;
   text-align: center;
   margin-top: 30px;
+  @media screen and #{$tablet} {
+    font-size: 30px;
+  }
 }
+
 .drinkTitleSelected {
   text-align: center;
   color: $lightOrange;
   font-size: 25px;
   margin-top: 30px;
+  @media screen and #{$tablet} {
+    font-size: 30px;
+  }
 }
 
 .alcoholOrNot {
   color: $lightGrey;
   text-align: center;
+  @media screen and #{$tablet} {
+    font-size: 20px;
+  }
 }
 .youtube {
+  padding-top: 20px;
   max-width: 100%;
+  @media screen and #{$tablet} {
+    width: 640px;
+    height: 360px;
+
+  }
 }
 
 .drink_tag {
@@ -348,6 +436,8 @@ body {
   flex-direction: column;
   text-align: center;
   color: $lightGrey;
+  height: 100%;
+  width: 100%;
   .guestsDiv {
     display: flex;
     justify-content: center;
@@ -374,6 +464,15 @@ body {
   text-align: center;
   color: $lightGrey;
   padding: 10px;
+  @media screen and #{$tablet} {
+    font-size: 18px;
+  }
+}
+
+.dropdownForms {
+  @media screen and #{$tablet} {
+    width: 250px;
+  }
 }
 
 // CHECKOUT-TILE STYLES +++++++++++++++++++++++++
@@ -385,7 +484,7 @@ body {
   font-size: 20px;
   i {
     font-size: 20px;
-    padding-left: 5px;
+    padding-left: 10px;
     color: $lightTeal;
   }
 }
