@@ -6,6 +6,10 @@ Drink uses the [Absolut Drinks API](http://addb.absolutdrinks.com) to allow user
 
 It demonstrates routing and the use of services and computed properties in Ember.
 
+## Demo
+
+Drink is deployed on [Heroku](http://fast-shore-47624.herokuapp.com/).
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
