@@ -501,6 +501,21 @@ body {
   padding: 15px 0;
 }
 
+.printLink {
+  color: $lightOrange;
+  text-decoration: none;
+  &:hover {
+    color: $lightOrange;
+    text-decoration: none;
+  }
+  &:active {
+    color: $lightOrange;
+  }
+  &:visited {
+    color: $lightOrange;
+  }
+}
+
 
 
 

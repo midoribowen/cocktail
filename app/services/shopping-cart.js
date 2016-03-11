@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   recipes: [],
   allIngredients: [],
+  result: [],
 
   allIngredientsLength: Ember.computed(function() {
     return this.get('allIngredients').length;
@@ -89,5 +90,10 @@ export default Ember.Service.extend({
    // Work around to always referesh the computed property when user
    // clicks the update button.
    this.notifyPropertyChange('allIngredients');
+ },
+
+ saveResult(list) {
+   this.set('result', list);
+   this.notifyPropertyChange('result');
  }
 });
