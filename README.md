@@ -8,7 +8,7 @@ It demonstrates routing and the use of services and computed properties in Ember
 
 ## Demo
 
-Drink is deployed on [Heroku](http://fast-shore-47624.herokuapp.com/).
+Drink is deployed on [Heroku](http://drink-cocktails.herokuapp.com/).
 
 ## Prerequisites
 
