@@ -401,6 +401,10 @@ body {
   }
 }
 
+.drinkTitle, .drinkTitleSelected {
+  cursor: pointer;
+}
+
 .drinkTitle {
   color: $lightTeal;
   font-size: 25px;
