@@ -1,0 +1,15 @@
+<h2>Drinks</h2>
+{{#each shoppingCart.recipes as |drink|}}
+<p>
+  {{drink.name}}
+</p>
+{{/each}}
+
+<h2>Ingredients</h2>
+<ul>
+  {{#each resultList as |ingredient|}}
+  <li>{{ingredient.amount}} {{ingredient.of}}</li>
+  {{/each}}
+</ul>
+
+{{#link-to 'index' class='printLink'}}Home{{/link-to}}

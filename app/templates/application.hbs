@@ -1,32 +1,3 @@
-
-<div class="hero">
-  <!-- NAVBAR -->
-  <div class="navBar navbar-fixed-top">
-    <div class="links">
-      {{#link-to 'index'}}<span class="logoIcon"><i class="fa fa-glass"></i></span>{{/link-to}}
-      <div class="btn-group">
-        <button class="cartDiv btn dropdown-toggle" data-toggle="dropdown">
-          <span class="cart"><i class="fa fa-list-ul"></i></span>
-          <span class="itemsInCart">{{items-in-cart}}</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <!-- CART CONTENTS -->
-          <li>{{checkout-tile}}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- TITLE -->
-  <div class="title">
-    <h1>DR/NK.</h1>
-    <div class="whiteLine"></div>
-  </div>
-  <!-- BUTTON -->
-  <div class="searchDiv">
-    {{search-form search='search'}}
-  </div>
-  <span class="enjoyResponsibly">Enjoy Responsibly.</span>
-</div>
 <div class="wrapper">
   {{outlet}}
 </div>
